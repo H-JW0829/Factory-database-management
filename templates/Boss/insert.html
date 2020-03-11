@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+{% block title%}添加页面{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='CSS/select_staff.css') }}">
+{% endblock %}
+
+{% block main %}
+<ul id="myTab" class="nav nav-tabs">
+	<li class="active"><a href="#staff" data-toggle="tab">员工</a></li>
+	<li><a href="#order" data-toggle="tab">订单</a></li>
+	<li><a href="#car-room" data-toggle="tab">车间</a></li>
+    <li><a href="#customer" data-toggle="tab">顾客</a></li>
+    <li><a href="#product" data-toggle="tab">产品</a></li>
+    <li><a href="#workshop" data-toggle="tab">仓库</a></li>
+</ul>
+    {% if success == True %}
+        {% include 'myModel/successModel.html' %}
+    {% endif %}
+
+    {% if success == False %}
+        {% include 'myModel/warningModel.html' %}
+    {% endif %}
+
+<div id="myTabContent" class="tab-content">
+	<div class="tab-pane fade in active" id="staff">
+		<h3 class="page-title">添加员工</h3>
+    <form action="{{ url_for('db_options.insert_in_db',insert_id=1) }}" method="post">
+            <div class="form-container">
+                <div class="form-group">
+                    <input type="text" placeholder="职工编号" name="worker_id" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="姓名" name="worker_name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="身份证号" name="id_card_no" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="年龄" name="age" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="性别" name="sex" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="联系方式" name="telephone" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="地址" name="address" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="工资" name="salary" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="工种" name="worker_type" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="车间号" name="workshop_id" class="form-control">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary">添加</button>
+                </div>
+            </div>
+    </form>
+</div>
+
+
+
+	<div class="tab-pane fade" id="order">
+		<h3 class="page-title">添加订单</h3>
+       <form action="{{ url_for('db_options.insert_in_db',insert_id=2) }}" method="post">
+            <div class="form-container">
+                <div class="form-group">
+                    <input type="text" placeholder="订单编号" name="order-num" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="公司名称" name="company" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="下单日期" name="order_date" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="交货日期" name="delivery_date" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="订单状态" name="order_state" class="form-control">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary">添加</button>
+                </div>
+            </div>
+    </form>
+	</div>
+
+
+
+
+	<div class="tab-pane fade" id="car-room">
+		<h3 class="page-title">添加车间</h3>
+       <form action="{{  url_for('db_options.insert_in_db',insert_id=3) }}" method="post">
+            <div class="form-container">
+                <div class="form-group">
+                    <input type="text" placeholder="车间号" name="workshop_id" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="主任编号" name="director_id" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="办公电话" name="telephone" class="form-control">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary">添加</button>
+                </div>
+            </div>
+    </form>
+	</div>
+
+
+
+
+    <div class="tab-pane fade" id="customer">
+		<h3 class="page-title">添加顾客</h3>
+       <form action="{{ url_for('db_options.insert_in_db',insert_id=4) }}" method="post">
+            <div class="form-container">
+                <div class="form-group">
+                    <input type="text" placeholder="公司名称" name="company-name" class="form-control">
+                </div>
+                  <div class="form-group">
+                    <input type="text" placeholder="联系人" name="name" class="form-control">
+                </div>
+                  <div class="form-group">
+                    <input type="text" placeholder="联系方式" name="telephone" class="form-control">
+                </div>
+                  <div class="form-group">
+                    <input type="text" placeholder="联系地址" name="address" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-primary">添加</button>
+                </div>
+            </div>
+    </form>
+
+	</div>
+
+
+
+
+    <div class="tab-pane fade" id="product">
+		<h3 class="page-title">添加产品</h3>
+       <form action="{{ url_for('db_options.insert_in_db',insert_id=5) }}" method="post">
+            <div class="form-container">
+                <div class="form-group">
+                    <input type="text" placeholder="产品编号" name="product-id" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="产品名称" name="product-name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="出厂价" name="price" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="酬劳" name="reward" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="月产量" name="output" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-primary">查找</button>
+                </div>
+            </div>
+    </form>
+	</div>
+
+    <div class="tab-pane fade" id="workshop">
+		<h3 class="page-title">添加仓库</h3>
+       <form action="{{ url_for('db_options.insert_in_db',insert_id=6) }}" method="post">
+            <div class="form-container">
+                <div class="form-group">
+                    <input type="text" placeholder="仓库编号" name="warehouse-id" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="管理员编号" name="worker-id" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="电话" name="telephone" class="form-control">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary">添加</button>
+                </div>
+            </div>
+    </form>
+	</div>
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title%}首页{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='CSS/index.css') }}">
+{% endblock %}
+
+{% block main  %}
+    <h2 class="luntan-title">工厂论坛</h2>
+    <ul class="question-list-group" >
+        {% for question in questions.items %}
+            <li>
+                <div class="avatar-group">
+                    <img src="{{ url_for('static',filename='images/ldq_logo.png') }}" alt="" class="avatar">
+                </div>
+                <div class="question-group">
+                    <p class="question-title"><a href="{{ url_for('forum.detail',question_id=question.id) }}">{{ question.title }}</a> </p>
+                    <p class="question-content" style="font-size:130%;">{{ question.content }}</p>
+                    <div class="question-info">
+                        <span class="question-author">{{ question.author.user_name }}</span>
+                        <span class="question-time">{{ question.create_time }}</span>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="page_roll">
+        {% if questions.has_prev %}<a href="{{ url_for('index', page = questions.prev_num) }}"><< 上一页</a>{% else %}<< 上一页{% endif %} |
+        {% if questions.has_next %}<a href="{{ url_for('index', page = questions.next_num) }}"> 下一页 >></a>{% else %}下一页 >>{% endif %}
+    </div>
+{% endblock %}

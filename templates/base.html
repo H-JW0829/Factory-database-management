@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+         <meta charset="UTF-8">
+         <title>
+             {% block title%}{% endblock %}-罗大桥工厂
+         </title>
+         {% block head%}{% endblock %}
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+         <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+         <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+         <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+         <script src="https://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js"></script>
+         <link rel="stylesheet" href="{{ url_for('static',filename='CSS/base.css') }}">
+         <script src="{{ url_for('static',filename='JS/base.js') }}"></script>
+    </head>
+
+    <body style="overflow-y:scroll;">
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/">首页 <span class="sr-only">(current)</span></a></li>
+                        <li><a href="{{ url_for('forum.question') }}">发布问答</a></li>
+                        <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">工厂管理<span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+{#                                <li><a href="#">工厂信息</a></li>#}
+                                <li><a href="{{ url_for('db_options.factory_management',options_select=0) }}">厂长管理</a></li>
+                                <li><a href="{{ url_for('ag_ops.agent_management') }}">车间主任</a></li>
+                                <li><a href="{{  url_for('ag_ops.warehouse_show') }}">仓库管理员</a></li>
+                              </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-left" action="{{ url_for('index')}}"  method='post' >
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="请输入关键字" name="words">
+                        </div>
+                        <button type="submit" class="btn btn-default">查找</button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                          {% if user %}
+                              <li><a href="#">{{ user.user_name }}</a></li>
+                              <li><a href="{{ url_for('utils.usercenter',user_id = user.id,tag=1) }}">个人中心</a></li>
+                              <li><a href="{{ url_for('utils.logout') }}">注销</a></li>
+                          {% else %}
+                              <li><a href="{{ url_for('utils.login') }}">登录</a></li>
+                              <li><a href="{{ url_for('utils.regist') }}">注册</a></li>
+                          {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="main" >
+            {% block main%}{% endblock %}
+        </div>
+    </body>
+</html>

@@ -1,0 +1,195 @@
+{%  from "myModel/myModel.html" import model1 with context%}
+{% extends 'base.html' %}
+{% block title%}查询页面{% endblock %}
+{% block head %}
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ url_for('static',filename='CSS/select_staff.css') }}">
+{% endblock %}
+
+{% block main %}
+<ul id="myTab" class="nav nav-tabs">
+	<li ><a href="#staff" data-toggle="tab">员工</a></li>
+	<li><a href="#order" data-toggle="tab">订单</a></li>
+	<li><a href="#car-room" data-toggle="tab">车间</a></li>
+    <li><a href="#customer" data-toggle="tab">顾客</a></li>
+    <li><a href="#product" data-toggle="tab">产品</a></li>
+    <li><a href="#produce" data-toggle="tab">车间产品</a></li>
+    <li><a href="#order_product" data-toggle="tab">订单产品</a></li>
+</ul>
+
+{% if success == True %}
+    {% include 'myModel/successModel.html' %}
+{% endif %}
+
+{% if success == False %}
+    {% include 'myModel/warningModel.html' %}
+{% endif %}
+
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade in active" id="staff">
+    <h3 class="page-title">员工信息</h3>
+    <div id="myDiv1">
+        <form action="">
+            <div class="form-container">
+                <div class="form-group">
+                    <input type="text" placeholder="请输入工种(必填)" name="staff_type" class="form-control" v-model="workerType">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="请输入年龄" name="staff_age" class="form-control" v-model="workerAge">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="请输入车间号" name="staff_car_room" class="form-control" v-model="carRoom">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" @click="submitData($event)">查找</button>
+                </div>
+            </div>
+        </form>
+        <div v-if="showButton">
+            {% include 'myModel/myModel.html' %}
+        </div>
+    </div>
+    </div>
+    <script src="{{ url_for('static',filename='JS/selectWorker.js') }}"></script>
+
+      <div class="tab-pane fade" id="order">
+      <h3 class="page-title">订单信息</h3>
+      <div id="myDiv2">
+          <form action="">
+              <div class="form-container">
+                  <div class="form-group">
+                        <input type="text" placeholder="请输入交货时间" name="order-time" class="form-control" v-model="orderTime">
+                  </div>
+                  <div class="form-group">
+                        <input type="text" placeholder="请输入顾客" name="customer-info" class="form-control" v-model="customerInfo">
+                  </div>
+                  <div class="form-group">
+                        <button class="btn btn-primary" @click="submitData($event)">查找</button>
+                  </div>
+              </div>
+          </form>
+          <div v-if="showButton">
+              {% include 'myModel/myModel.html' %}
+          </div>
+      </div>
+      </div>
+      <script src="{{ url_for('static',filename='JS/selectOrder.js') }}"></script>
+
+        <div class="tab-pane fade" id="car-room">
+		<h3 class="page-title">车间信息</h3>
+        <div id="myDiv3">
+            <form action="">
+                <div class="form-container">
+                    <div class="form-group">
+                        <input type="text" placeholder="请输入车间编号" name="car-room-num" class="form-control" v-model="workShopNum">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" @click="submitData($event)">查找</button>
+                    </div>
+                </div>
+            </form>
+          <div v-if="showButton">
+              {% include 'myModel/myModel.html' %}
+          </div>
+        </div>
+      </div>
+      <script src="{{ url_for('static',filename='JS/selectworkShop.js') }}"></script>
+
+
+     <div class="tab-pane fade" id="customer">
+     <h3 class="page-title">顾客信息</h3>
+     <div id="myDiv4">
+         <form action="">
+            <div class="form-container">
+                <div class="form-group">
+                    <input type="text" placeholder="请输入公司名称" name="company-name" class="form-control" v-model="companyName">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" @click="submitData($event)">查找</button>
+                </div>
+            </div>
+         </form>
+        <div v-if="showButton">
+              {% include 'myModel/myModel.html' %}
+        </div>
+     </div>
+	</div>
+    <script src="{{ url_for('static',filename='JS/selectCooperation.js') }}"></script>
+
+
+       <div class="tab-pane fade" id="product">
+       <h3 class="page-title">产品信息</h3>
+       <div id="myDiv5">
+           <form action="">
+                <div class="form-container">
+                    <div class="form-group">
+                        <input type="text" placeholder="请输入产品编号" name="product-id" class="form-control" v-model="productId">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" @click="submitData($event)">查找</button>
+                    </div>
+                </div>
+           </form>
+           <div v-if="showButton">
+              {% include 'myModel/myModel.html' %}
+           </div>
+       </div>
+	</div>
+    <script src="{{ url_for('static',filename='JS/selectProduct.js') }}"></script>
+
+      <div class="tab-pane fade" id="produce">
+      <h3 class="page-title">车间产品</h3>
+      <div id="myDiv6">
+          <form action="">
+                <div class="form-container">
+                    <div class="form-group">
+                        <input type="text" placeholder="请输入车间号" name="workshop-id" class="form-control" v-model="workShopID">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" @click="submitData($event)">查找</button>
+                    </div>
+                </div>
+          </form>
+          <div v-if="showButton">
+              {% include 'myModel/myModel.html' %}
+          </div>
+      </div>
+	  </div>
+      <script src="{{ url_for('static',filename='JS/selectProduce.js') }}"></script>
+
+       <div class="tab-pane fade" id="order_product">
+       <h3 class="page-title">订单产品</h3>
+       <div id="myDiv7">
+       <form action="">
+            <div class="form-container">
+                <div class="form-group">
+                    <input type="text" placeholder="请输入订单号" name="order-id" class="form-control" v-model="orderNum">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" @click="submitData($event)">查找</button>
+                </div>
+            </div>
+        </form>
+        <div v-if="showButton">
+              {% include 'myModel/myModel.html' %}
+        </div>
+        </div>
+        <script src="{{ url_for('static',filename='JS/selectOrderProduct.js') }}"></script>
+	    </div>
+        </div>
+    <script>
+	$(document).ready(function(){
+		$("#Mymodal").click(function(){
+			$("#new").modal("show");
+		})
+	});
+
+	$(function () {
+	    var buttons = document.getElementsByClassName("btn btn-primary btn-lg");
+	    console.log(buttons);
+	    if(buttons.length > 0){
+	       buttons[0].click();
+        }
+    })
+    </script>
+{% endblock %}

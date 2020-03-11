@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}详情{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='CSS/detail.css') }}">
+{% endblock %}
+
+{% block main %}
+    <h3 class="page-title"><strong>{{  question.title }}</strong></h3>
+    <p class="question-info">
+        <span id="author">作者：{{ question.author.user_name }}</span>
+        <span id="time">时间：{{ question.create_time }}</span>
+    </p>
+    <hr>
+    <hr>
+    <p class="question-content" style="word-break:break-all;">{{ question.content }}</p>
+    <hr>
+    <h4>评论:({{ length }})</h4>
+    <form action="{{ url_for('forum.add_answer') }}" method="post">
+        <div class="form-group">
+            <input name="answer_content" type="text" class="form-control" placeholder="请填写评论">
+            <input type="hidden" name="question_id" value="{{ question.id }}">
+        </div>
+        <div class="form-group" style="text-align: right">
+            <button class="btn btn-primary">评论</button>
+        </div>
+    </form>
+    <ul class="answer-list">
+        {% for answer in question.answers %}
+          <li>
+               <div class="user-info">
+                   <img src="{{ url_for('static',filename='images/ldq_logo.png') }}" alt="" class="avatar">
+                   <span class="username">{{ answer.author.user_name }}</span>
+                   <span class="create-time">{{ answer.create_time }}</span>
+               </div>
+               <p class="answer-content">{{ answer.content }}</p>
+          </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

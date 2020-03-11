@@ -1,0 +1,11 @@
+.form-container{
+    width: 200px;
+    margin: 0 auto;
+}
+
+.alert-warning{
+    width:350px;
+    padding: 0;
+    margin: 0 auto;
+    height: 50px;
+}

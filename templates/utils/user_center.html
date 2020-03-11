@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block title %}
+    个人中心
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static',filename='JS/editUserInfo.js') }}"></script>
+    <script src="{{ url_for('static',filename='JS/user_center.js') }}"></script>
+    <style>
+    th,td{
+        text-align: center !important;
+    }
+    </style>
+{% endblock %}
+
+{% block main %}
+    <div style="padding-left: 300px;padding-right: 300px">
+        <h3><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{ user.name }} <br></h3>
+        <ul class="nav nav-tabs">
+            <li><a id="a1" href="javascript:void(0)">个人信息</a></li>
+            <li><a id="a2" href="javascript:void(0)">考勤情况</a></li>
+            <li><a id="a3" href="javascript:void(0)">个人绩效</a></li>
+        </ul>
+
+        <ul id="show1" class="list-group">
+            <li class="list-group-item ">编号：{{ user.worker_id }}</li>
+            <li class="list-group-item li_edit">姓名：<span>{{ user.name }}</span></li>
+            <li class="list-group-item li_edit">身份证号：<span>{{ user.id_card_NO }}</span></li>
+            <li class="list-group-item li_edit">年龄：<span>{{ user.age }}</span></li>
+            <li class="list-group-item li_edit">联系方式：<span>{{ user.contart_info }}</span></li>
+            <li class="list-group-item li_edit">住址：<span>{{ user.address }}</span></li>
+            <li class="list-group-item ">工资：{{ user.salary }}</li>
+            <li class="list-group-item ">工种：{{ user.work_type }}</li>
+            <li class="list-group-item ">车间号：{{ user.workshop_id }}</li>
+            <li class="list-group-item li_edit">性别：<span>{{ user.sex }}</span></li>
+        </ul>
+
+        <table id="show2" class="table table-hover" style="cellspacing:20px;cellpadding:12px">
+            <thead>
+              <tr>
+                     <th>员工号</th>
+                     <th>年</th>
+                     <th>月</th>
+                     <th>日</th>
+                     <th>上班时间</th>
+                     <th>下班时间</th>
+              </tr>
+            </thead>
+            <tbody>
+                 {% for attendance in user.attendances %}
+                     <tr >
+                         <td><p style="font-size: 120%">{{ attendance.worker_id }}</p></td>
+                         <td><p style="font-size: 120%">{{ attendance.year }}</p></td>
+                         <td><p style="font-size: 120%">{{ attendance.month }}</p></td>
+                         <td><p style="font-size: 120%">{{ attendance.day }}</p></td>
+                         <td><p style="font-size: 120%">{{attendance.time_in}}</p></td>
+                         <td><p style="font-size: 120%">{{ attendance.time_out}}</p></td>
+                     </tr>
+                 {% endfor %}
+            </tbody>
+      </table>
+
+        <table id="show3"  class="table table-hover" style="cellspacing:20px;cellpadding:12px">
+            <thead>
+                <tr>
+                     <th>员工号</th>
+                     <th>年</th>
+                     <th>月</th>
+                     <th>日</th>
+                     <th>产品编号</th>
+                     <th>产品数量</th>
+                 </tr>
+            </thead>
+            <tbody>
+                 {% for performance in user.performances %}
+                     <tr >
+                             <td><p style="font-size: 120%">{{ performance.worker_id }}</p></td>
+                             <td><p style="font-size: 120%">{{ performance.year }}</p></td>
+                             <td><p style="font-size: 120%">{{ performance.month }}</p></td>
+                             <td><p style="font-size: 120%">{{ performance.day }}</p></td>
+                             <td><p style="font-size: 120%">{{performance.product_id}}</p></td>
+                             <td><p style="font-size: 120%">{{ performance.quantity}}</p></td>
+                     </tr>
+                 {% endfor %}
+             </tbody>
+      </table>
+    </div>
+    {% block user %}{% endblock %}
+{% endblock %}

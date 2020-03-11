@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}工厂管理{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='CSS/factory_management.css') }}">
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{% endblock %}
+
+{% block main %}
+    <h2 id="title" style="text-align: center">请选择您要进行的操作：</h2>
+    <a href="{{ url_for('ag_ops.agent_management',select=1) }}" style="text-decoration: none"><div class="myDiv" style="float: left;margin-left: 80px">
+            <span style="font-size:30px; color:white;">查询信息</span></div></a>
+    <a href="{{ url_for('ag_ops.agent_management',select=2) }}" style="text-decoration: none"><div class="myDiv" style="margin-left: 120px"  >
+            <span style="font-size:30px; color:white;">更新信息</span></div></a>
+    <a href="{{ url_for('ag_ops.agent_management',select=3) }}" style="text-decoration: none"><div class="myDiv" style="float: right;margin-right: 80px">
+            <span style="font-size:30px; color:white;">增加信息</span></div></a>
+
+    {% if warning == True %}
+        {% include 'myModel/warningModel.html' %}
+    {% endif %}
+
+        <div class="form-group" style="text-align: center;margin-top: 50px;">
+    </div>
+{% endblock %}

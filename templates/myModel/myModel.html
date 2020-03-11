@@ -1,0 +1,85 @@
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="float:right;display: none" >显示结果</button>
+<div  class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:2000px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">查询结果</h4>
+            </div>
+            <div class="modal-body" id="app">
+                <ul class="staff_list" >
+                    <table class="table" v-model="datas">
+                        <thead>
+                            <tr>
+                               <th style="padding-top: 10px;padding-bottom: 15px" v-for="(label) in labels">{[label]}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(item,itemIndex) in PageDatas" :key="itemIndex">
+                                <td style="padding-top: 15px;padding-bottom: 15px" v-for="(value,key,index) in item" class="td_edit">{[value]}</td>
+                                <td v-if="canDel" style="padding-top: 15px;padding-bottom: 15px"><a  href="javascript:void(0);" style="text-decoration: none" @click="delItem(item,itemIndex)">删除</a>
+                                <span v-if="canEdit"> / <a href="javascript:void(0);" style="text-decoration: none" @click="editItem(item,itemIndex)">编辑</a></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </ul>
+            </div>
+        <div class="modal-footer">
+            <p><a href="javascript:void(0);" style="text-decoration: none" @click="ChangePage(0)">上一页</a>  |
+                <a href="javascript:void(0);" style="text-decoration: none" @click="ChangePage(1)">下一页</a></p>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+    //在页面加载时候，就使td节点具有click点击能力
+    $(document).ready(function() {
+        //给所有td添加点击事件
+        var tdNods = $(".td_edit");
+        tdNods.click(tdClick);//点击调用tdClick方法
+        // $(".edit").click(function(){
+        //     alert("点击测试");
+        // });
+        function tdClick() {
+            //点击时将文本框内容保存、插入输入框、将文字写入输入框
+            // 将td的文本内容保存
+            var td = $(this);
+            var trChildren = td.parent("tr").children();
+            var tdText = td.text();//未修改的值
+            // 将td的内容清空
+            td.empty();
+            // 新建一个输入框
+            var input = $("<input>");
+            // 将保存的文本内容赋值给输入框
+            input.val(tdText);
+            input.width(td.width());
+            // 将输入框添加到td中
+            td.append(input);
+            // 双击获取基础数据
+            input.dblclick(function() {
+            });
+
+            input.blur(function() {
+                // 将输入框的文本保存
+                var input = $(this);
+                var inputText = input.val();
+                // 将td的内容，即输入框去掉,然后给td赋值
+                var td = input.parent("td");
+                td.html(inputText);//修改后的值
+                // 让td重新拥有点击事件
+                if(inputText!=tdText){
+                    //如果点击的单元格内容发生了变化，则设置按钮为可点击
+                    td.parent("tr").find("#edit").removeAttr("disabled");
+                }
+                td.click(tdClick);
+            });
+
+            // 将jquery对象转化为DOM对象
+            var inputDom = input.get(0);
+            inputDom.select();
+            // 将td的点击事件移除
+            td.unbind("click");
+        }
+    });
+</script>

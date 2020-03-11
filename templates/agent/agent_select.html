@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title%}查询员工{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='CSS/select_staff.css') }}">
+{% endblock %}
+
+{% block main %}
+<div id="myDiv">
+    <ul id="myTab" class="nav nav-tabs">
+        <li>
+            <form action="">
+             <div class="form-group">
+                 <input type="text" placeholder="搜索" name="q" class="form-control" v-model="name">
+             </div>
+            <div class="form-group">
+                <button class="btn btn-primary" @click="submitData($event)">搜索</button>
+            </div>
+            </form>
+        </li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="modal-body">
+                      <ul class="staff_list" >
+                       <table class="table">
+                      <thead>
+                        <tr>
+                             <th>员工号</th>
+                             <th>姓名</th>
+                             <th>身份证号</th>
+                             <th>年龄</th>
+                             <th>性别</th>
+                             <th>电话</th>
+                             <th>地址</th>
+                             <th>工资</th>
+                             <th>工种</th>
+                             <th>所属车间</th>
+                             <th>操作</th>
+                         </tr>
+                         </thead>
+                        <tbody>
+                         <tr v-for="(item,itemIndex) in PageDatas">
+                                 <td style="padding-top: 15px;padding-bottom: 15px" v-for="(value,key,index) in item">{[value]}</td>
+                                 <td style="padding-top: 15px;padding-bottom: 15px"><a href="javascript:void(0);" style="text-decoration: none" @click="delItem(item,itemIndex)">删除</a>
+                         </tr>
+                         </tbody>
+                  </table>
+              </ul>
+        </div>
+        <div class="modal-footer">
+                <p><a href="javascript:void(0);" style="text-decoration: none" @click="ChangePage(0)">上一页</a>  |
+                    <a href="javascript:void(0);" style="text-decoration: none" @click="ChangePage(1)">下一页</a></p>
+        </div>
+
+    </div>
+</div>
+    <script src="{{ url_for('static',filename='JS/agentSelect.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,30 @@
+body{
+    background: #9b9b9b url('/static/images/logo3.jpg');
+    height:100%;
+    width:100%;
+    background-size:cover;
+    background-repeat:no-repeat;
+}
+
+.main{
+    width: 1000px;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 10px;
+    background: rgba(255,255,255,0.7);
+    color: #000;
+}
+
+.page-title{
+    text-align: center;
+}
+
+#bs-example-navbar-collapse-1>ul>li{
+    margin: 3px 7px;
+    font-size: 15px;
+}
+
+
+
+
+

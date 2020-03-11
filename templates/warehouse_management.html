@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title%}仓库管理{% endblock %}
+
+{% block head %}
+    <meta charset="utf-8">
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename='CSS/select_staff.css') }}">
+    <script src="{{ url_for('static',filename='JS/store.js') }}"></script>
+{% endblock %}
+
+{% block main %}
+<ul id="myTab" class="nav nav-tabs">
+    <li><a href="#store_product" data-toggle="tab">仓库及产品</a></li>
+    <li><a href="#less_product" data-toggle="tab">库存不足产品</a></li>
+</ul>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade" id="store_product">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>仓库编号</th>
+                    <th>管理员编号</th>
+                    <th>管理员姓名</th>
+                    <th>电话</th>
+                    <th>产品编号</th>
+                    <th>产品</th>
+                    <th>产品数量</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item,itemIndex) in PageDatas">
+                    <td>{[ item.warehouse_id ]}</td>
+                    <td>{[ item.worker_id ]}</td>
+                    <td>{[ item.name ]}</td>
+                    <td>{[ item.telephone ]}</td>
+                    <td>{[ item.product_id ]}</td>
+                    <td>{[ item.product_name ]}</td>
+                    <td>{[ item.quantity ]}</td>
+                    <td style="padding-top: 15px;padding-bottom: 15px"><a  href="javascript:void(0);" style="text-decoration: none" @click="delItem(item,itemIndex)">删除</a></td>
+                </tr>
+
+            </tbody>
+        </table>
+        <div class="modal-footer">
+            <p><a href="javascript:void(0);" style="text-decoration: none" @click="ChangePage(0)">上一页</a>  |
+                <a href="javascript:void(0);" style="text-decoration: none" @click="ChangePage(1)">下一页</a></p>
+        </div>
+    </div>
+
+
+    <div class="tab-pane fade" id="less_product">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>仓库编号</th>
+                    <th>管理员编号</th>
+                    <th>管理员姓名</th>
+                    <th>电话</th>
+                    <th>产品编号</th>
+                    <th>产品</th>
+                    <th>产品数量</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item,itemIndex) in lessPageDatas">
+                    <td>{[ item.warehouse_id ]}</td>
+                    <td>{[ item.worker_id ]}</td>
+                    <td>{[ item.name ]}</td>
+                    <td>{[ item.telephone ]}</td>
+                    <td>{[ item.product_id ]}</td>
+                    <td>{[ item.product_name ]}</td>
+                    <td>{[ item.quantity ]}</td>
+                </tr>
+
+            </tbody>
+        </table>
+        <div class="modal-footer">
+            <p><a href="javascript:void(0);" style="text-decoration: none" @click="ChangePage(0)">上一页</a>  |
+                <a href="javascript:void(0);" style="text-decoration: none" @click="ChangePage(1)">下一页</a></p>
+        </div>
+	</div>
+</div>
+{% endblock %}

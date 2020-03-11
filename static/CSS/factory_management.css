@@ -1,0 +1,14 @@
+.myDiv{
+    background: darkgray;
+    width:18%;
+    height:400px;
+    display: inline-block;
+    text-align: center;
+    line-height:400px;
+    margin: 30px;
+    border-radius: 10px;
+}
+
+.myDiv:hover{
+    background: lightgray;
+}

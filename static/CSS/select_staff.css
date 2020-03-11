@@ -1,0 +1,15 @@
+.form-container{
+    width: 250px;
+    margin: 0 auto;
+    text-align: right;
+}
+
+.btn:active{
+
+}
+
+.form-group{
+    display: inline-block;
+    margin-left: 20px;
+    height: 30px;
+}

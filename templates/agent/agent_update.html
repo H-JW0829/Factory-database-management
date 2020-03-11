@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title%}更新员工{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='CSS/select_staff.css') }}">
+{% endblock %}
+
+{% block main %}
+    <ul id="myTab" class="nav nav-tabs">
+	<li class="active"><a href="#worker" data-toggle="tab">员工信息</a></li>
+
+    </ul>
+
+    {% if success == True %}
+        {% include 'myModel/successModel.html' %}
+    {% endif %}
+
+    {% if success == False %}
+        {% include 'myModel/warningModel.html' %}
+    {% endif %}
+
+
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade  in active" id="worker">
+        <h3 class="page-title">修改信息</h3>
+        <form action="{{ url_for('ag_ops.update_worker') }}" method="post">
+                <div class="form-container">
+                    <div class="form-group">
+                        <input type="text" placeholder="请输入要修改的员工编号" name="worker_id" class="form-control">
+                    </div>
+                    <h4 class="page-title"><strong>输入信息(不修改的部分不填)</strong></h4>
+                    <div class="form-group">
+                        <input type="text" placeholder="年龄" name="new_age" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="联系方式" name="new_tel" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="地址" name="new_addr" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="工资" name="new_salary" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="工种" name="new_type" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="车间号" name="new_workshop" class="form-control">
+                    </div>
+                     <div class="form-group">
+                        <button class="btn btn-primary">提交</button>
+                    </div>
+
+                </div>
+        </form>
+        </div>
+    </div>
+{% endblock %}

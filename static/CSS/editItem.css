@@ -1,0 +1,19 @@
+.form-item{
+		display:block;
+		text-align:center;
+		margin-top: 10px;
+	}
+	.form-input{
+		width:260px;
+		border: 1px solid #d0d0d0;
+		border-radius: 4px;
+		line-height: 1.5;
+		background: #fff;
+		padding: 2px 5px;
+	}
+	.form-input.textarea{
+		height:160px;
+	}
+	.label-text{
+		padding-right:10px;
+	}
