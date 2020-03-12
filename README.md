@@ -7,6 +7,23 @@
 4.车间主任可以对本车间的员工进行查询、删除、添加、更新的功能
 5.仓库管理员可以对本仓库的产品进行查询，同时可以查看库存不足的产品
 
-部分效果截图：
-
+部分效果截图
+①登录注册界面：
+![image](https://github.com/H-JW0829/Factory-database-management/blob/master/images/1.png)
+②首页
+![image](https://github.com/H-JW0829/Factory-database-management/blob/master/images/2.png)
+③问答详情页，可以添加评论
+![image](https://github.com/H-JW0829/Factory-database-management/blob/master/images/3.png)
+④可以发布问题
+![image](https://github.com/H-JW0829/Factory-database-management/blob/master/images/6.png)
+⑤个人中心可以查看个人基本信息、考勤、绩效，双击个人基本信息可以修改
+![image](https://github.com/H-JW0829/Factory-database-management/blob/master/images/4.png)
+⑥可以在管理界面按信息查找
+![image](https://github.com/H-JW0829/Factory-database-management/blob/master/images/5.png)
+⑦对查找的信息可以进行操作
+![image](https://github.com/H-JW0829/Factory-database-management/blob/master/images/7.png)
+⑧可以添加信息（这个功能实现的说实话还不是很方便）
+![image](https://github.com/H-JW0829/Factory-database-management/blob/master/images/8.png)
+⑨车间主任可以按姓名精确查找
+![image](https://github.com/H-JW0829/Factory-database-management/blob/master/images/9.png)
 
